@@ -1,23 +1,39 @@
-
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const footerSections = [
     {
       title: "Product",
-      links: ["Features", "Pricing", "Updates"]
+      links: [
+        { label: "Features", href: "/features" },
+        { label: "Pricing", href: "/pricing" },
+        { label: "Updates", href: "/updates" }
+      ]
     },
     {
       title: "Company",
-      links: ["About", "Careers", "Contact"]
+      links: [
+        { label: "About", href: "/about" },
+        { label: "Careers", href: "/careers" },
+        { label: "Contact", href: "/contact" }
+      ]
     },
     {
       title: "Resources",
-      links: ["Blog", "Help Center", "Documentation"]
+      links: [
+        { label: "Blog", href: "/blog" },
+        { label: "Help Center", href: "/help" },
+        { label: "Documentation", href: "/documentation" }
+      ]
     },
     {
       title: "Legal",
-      links: ["Privacy", "Terms", "Security"]
+      links: [
+        { label: "Privacy", href: "/privacy" },
+        { label: "Terms", href: "/terms" },
+        { label: "Security", href: "/security" }
+      ]
     }
   ];
 
@@ -51,10 +67,10 @@ const Footer = () => {
               <h3 className="font-medium mb-4 text-gray-800">{section.title}</h3>
               <ul className="space-y-2">
                 {section.links.map((link) => (
-                  <li key={link}>
-                    <a href="#" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                      {link}
-                    </a>
+                  <li key={link.label}>
+                    <Link to={link.href} className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                      {link.label}
+                    </Link>
                   </li>
                 ))}
               </ul>
