@@ -92,13 +92,23 @@ const UploadForm = () => {
           setresponseBlob(resdata);
           setResultStatus("success");
           setActiveStep(3);
+          setFormStep("result");
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+          
+          if (err.response) {
+            alert(err.message);
+          } else {
+            alert("Network error. Please try again.");
+          }
+        })
     } else {
       setResultStatus("quota_exceeded");
       setActiveStep(3);
+      setFormStep("result");
     }
-    setFormStep("result");
+    
   };
 
   const handleDownload = () => {
