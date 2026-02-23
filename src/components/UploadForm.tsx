@@ -15,6 +15,7 @@ const UploadForm = () => {
   const [jobDescription, setJobDescription] = useState("");
   const [characterCount, setCharacterCount] = useState(0);
   const [activeStep, setActiveStep] = useState(1);
+  const [userEmail, setUserEmail] = useState<string>("");
 
   // Dialog and result states
   const [showEmailDialog, setShowEmailDialog] = useState(false);
@@ -25,6 +26,17 @@ const UploadForm = () => {
   const [remainingDownloads, setRemainingDownloads] = useState(1);
   const [responseBlob, setresponseBlob] = useState(null);
 
+  const loadRazorpayScript = () => {
+    return new Promise<boolean>((resolve) => {
+      const script = document.createElement("script");
+      script.src = "https://checkout.razorpay.com/v1/checkout.js";
+      script.onload = () => resolve(true);
+      script.onerror = () => resolve(false);
+      document.body.appendChild(script);
+    });
+  };
+
+  
   const handleFileChange = (newFile: File | null) => {
     setFile(newFile);
   };
@@ -52,54 +64,69 @@ const UploadForm = () => {
   };
 
   const handleEmailSubmit = async (email: string) => {
+    setUserEmail(email);
     setIsCheckingEmail(true);
+
+    axios.get(
+      "http://localhost:8080/api/resume/status",
+      { params: { email } }
+    ).then((res)=>{
+      const mockResponse = {
+        isPro: res.data.pro,
+        remainingDownloads: res.data.freeChancesLeft,
+        canDownload: res.data.pro || res.data.freeChancesLeft>=0,
+      };
+  
+      setIsPro(mockResponse.isPro);
+      setRemainingDownloads(mockResponse.remainingDownloads);
+      setIsCheckingEmail(false);
+      setShowEmailDialog(false);
+  
+      // Move to processing step
+      setFormStep("processing");
+      setActiveStep(2);
+  
+      // Simulate processing
+  
+      //await new Promise(resolve => setTimeout(resolve, 2000));
+  
+      const formData = new FormData();
+      formData.append("file", file); // MUST match backend
+      formData.append("jd", jobDescription);
+  
+      // Show result based on user status
+      if (res?.data?.freeChancesLeft >= 0 || res?.data?.pro) {
+        axios
+          .post("http://localhost:8080/api/resume/generate", formData, {
+            responseType: "blob", // IMPORTANT (PDF)
+          })
+          .then((resdata) => {
+            setresponseBlob(resdata);
+            setResultStatus("success");
+            setActiveStep(3);
+          })
+          .catch((err) => console.log(err));
+      } else {
+        setResultStatus("quota_exceeded");
+        setActiveStep(3);
+      }
+      setFormStep("result");
+    }).catch((err)=>{
+      setResultStatus("quota_exceeded");
+      setActiveStep(3);
+      setIsCheckingEmail(false);
+      setShowEmailDialog(false);
+      setFormStep("result");
+    })
+  }
+    
 
     // Simulate API call to check user status
     // In production, this would call your backend API
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    //await new Promise((resolve) => setTimeout(resolve, 1500));
 
     // Mock response - replace with actual API call
-    const mockResponse = {
-      isPro: false,
-      remainingDownloads: 1,
-      canDownload: true,
-    };
 
-    setIsPro(mockResponse.isPro);
-    setRemainingDownloads(mockResponse.remainingDownloads);
-    setIsCheckingEmail(false);
-    setShowEmailDialog(false);
-
-    // Move to processing step
-    setFormStep("processing");
-    setActiveStep(2);
-
-    // Simulate processing
-
-    //await new Promise(resolve => setTimeout(resolve, 2000));
-
-    const formData = new FormData();
-    formData.append("file", file); // MUST match backend
-    formData.append("jd", jobDescription);
-
-    // Show result based on user status
-    if (mockResponse.canDownload) {
-      await axios
-        .post("http://localhost:8080/api/resume/generate", formData, {
-          responseType: "blob", // IMPORTANT (PDF)
-        })
-        .then((resdata) => {
-          setresponseBlob(resdata);
-          setResultStatus("success");
-          setActiveStep(3);
-        })
-        .catch((err) => console.log(err));
-    } else {
-      setResultStatus("quota_exceeded");
-      setActiveStep(3);
-    }
-    setFormStep("result");
-  };
 
   const handleDownload = () => {
     // In production, this would trigger the actual file download
@@ -126,6 +153,61 @@ const UploadForm = () => {
     setResultStatus("success");
   };
 
+  const handleUpgrade = async () => {
+    const loaded = await loadRazorpayScript();
+  
+    if (!loaded) {
+      alert("Razorpay SDK failed to load.");
+      return;
+    }
+  
+    try {
+      const orderRes = await axios.post(
+        "http://localhost:8080/api/payment/create-order",
+        null,
+        { params: { email: userEmail } }
+      );
+  
+      const options = {
+        key: orderRes.data.key,
+        amount: orderRes.data.amount,
+        currency: orderRes.data.currency,
+        order_id: orderRes.data.orderId,
+        name: "Resume AI Pro Plan",
+        description: "Monthly Subscription",
+  
+        handler: async function (response: any) {
+          await axios.post(
+            "http://localhost:8080/api/payment/verify",
+            {
+              ...response,
+              email: userEmail,
+            }
+          );
+  
+          alert("Pro activated!");
+  
+          setIsPro(true);
+          //setRemainingDownloads(Infinity);
+          console.log(userEmail);
+          
+           axios.get("/api/resume/status", { params: { userEmail } }).then((res)=>{
+            setRemainingDownloads(res.data.freeChancesLeft)
+            setResultStatus("success");
+           })
+          
+        },
+      };
+  
+      const rzp = new window.Razorpay(options);
+      rzp.open();
+    } catch (err) {
+      console.error(err);
+      alert("Payment failed. Try again.");
+    }
+  };
+
+  
   return (
     <section className="py-16 px-6">
       <div className="max-w-3xl mx-auto bg-background rounded-xl shadow-xl overflow-hidden">
@@ -230,6 +312,7 @@ const UploadForm = () => {
               remainingDownloads={remainingDownloads}
               onDownload={handleDownload}
               onReset={handleReset}
+              onUpgrade={handleUpgrade}
             />
           )}
 

@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Download, CheckCircle, Crown, AlertCircle } from "lucide-react";
+import { Download, CheckCircle, Crown, AlertCircle, Pointer } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
@@ -9,6 +9,7 @@ interface DownloadResultProps {
   remainingDownloads?: number;
   onDownload?: () => void;
   onReset?: () => void;
+  onUpgrade?: () => void;
 }
 
 const DownloadResult = ({ 
@@ -16,7 +17,8 @@ const DownloadResult = ({
   isPro = false, 
   remainingDownloads = 0,
   onDownload,
-  onReset 
+  onReset,
+  onUpgrade
 }: DownloadResultProps) => {
   
   if (status === 'processing') {
@@ -55,15 +57,13 @@ const DownloadResult = ({
         </p>
         
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <Link to="/pricing">
-            <Button className="bg-resume-purple hover:bg-resume-purple/90 gap-2">
+            <Button onClick={onUpgrade} className="bg-resume-purple hover:bg-resume-purple/90 gap-2">
               <Crown className="h-4 w-4" />
               Upgrade to Pro
             </Button>
-          </Link>
-          <Button variant="outline" onClick={onReset}>
+{/*           <Button variant="outline" onClick={onReset}>
             Try Different Resume
-          </Button>
+          </Button> */}
         </div>
         
         <p className="text-xs text-muted-foreground mt-6">
@@ -101,13 +101,13 @@ const DownloadResult = ({
         </Button>
       </div>
       
-      {!isPro && (
+      {(!isPro || remainingDownloads<=-1) && (
         <div className="mt-6 p-4 bg-muted/50 rounded-lg max-w-sm mx-auto">
           <p className="text-sm text-muted-foreground">
             <span className="font-medium text-foreground">{remainingDownloads}</span> free download{remainingDownloads !== 1 ? 's' : ''} remaining this month.{' '}
-            <Link to="/pricing" className="text-resume-purple hover:underline font-medium">
+            <span onClick={onUpgrade} style={{cursor:"pointer"}} className="text-resume-purple hover:underline font-medium">
               Upgrade to Pro
-            </Link>{' '}
+            </span>{' '}
             for unlimited access.
           </p>
         </div>
