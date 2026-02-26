@@ -199,7 +199,7 @@ const UploadForm = () => {
         },
       };
   
-      const rzp = new window.Razorpay(options);
+      const rzp = new (window as any).Razorpay(options);
       rzp.open();
     } catch (err) {
       console.error(err);
@@ -209,7 +209,7 @@ const UploadForm = () => {
 
   
   return (
-    <section className="py-16 px-6">
+    <section id="upload-section" className="py-16 px-6">
       <div className="max-w-3xl mx-auto bg-background rounded-xl shadow-xl overflow-hidden"
       style={{backgroundColor:"white"}}>
         <div className="p-8">

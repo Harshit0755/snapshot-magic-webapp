@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const NavBar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
   
   useEffect(() => {
     const handleScroll = () => {
@@ -14,6 +16,14 @@ const NavBar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleGetStarted = () => {
+    if (location.pathname !== '/') {
+      navigate('/', { state: { scrollToUpload: true } });
+    } else {
+      document.getElementById('upload-section')?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <nav className={cn(
@@ -33,7 +43,7 @@ const NavBar = () => {
         <Link to="/about" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">About</Link>
       </div>
       
-      <Button className="bg-black text-white hover:bg-black/90">Get Started</Button>
+      <Button className="bg-black text-white hover:bg-black/90" onClick={handleGetStarted}>Get Started</Button>
     </nav>
   );
 };
