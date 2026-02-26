@@ -8,19 +8,19 @@ const Pricing = () => {
   const plans = [
     {
       name: "Free",
-      price: "$0",
+      price: "₹0",
       period: "forever",
       description: "Perfect for trying out our service",
       features: [
         "1 resume optimization per month",
         "Basic ATS compatibility check",
-        "Standard templates",
+        "Standard template",
         "Email support"
       ]
     },
     {
       name: "Pro",
-      price: "$19",
+      price: "₹49",
       period: "per month",
       description: "Best for active job seekers",
       features: [

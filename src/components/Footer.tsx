@@ -7,32 +7,14 @@ const Footer = () => {
       title: "Product",
       links: [
         { label: "Features", href: "/features" },
-        { label: "Pricing", href: "/pricing" },
-        { label: "Updates", href: "/updates" }
+        { label: "Pricing", href: "/pricing" }
       ]
     },
     {
       title: "Company",
       links: [
         { label: "About", href: "/about" },
-        { label: "Careers", href: "/careers" },
         { label: "Contact", href: "/contact" }
-      ]
-    },
-    {
-      title: "Resources",
-      links: [
-        { label: "Blog", href: "/blog" },
-        { label: "Help Center", href: "/help" },
-        { label: "Documentation", href: "/documentation" }
-      ]
-    },
-    {
-      title: "Legal",
-      links: [
-        { label: "Privacy", href: "/privacy" },
-        { label: "Terms", href: "/terms" },
-        { label: "Security", href: "/security" }
       ]
     }
   ];
@@ -56,11 +38,12 @@ const Footer = () => {
     <footer className="bg-gray-100 py-16 px-6">
       <div className="max-w-6xl mx-auto">
         <motion.div 
-          className="grid grid-cols-2 md:grid-cols-4 gap-8"
+          className="grid grid-cols-2 md:grid-cols-2 gap-8"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
+          style={{justifyItems:"center"}}
         >
           {footerSections.map((section) => (
             <motion.div key={section.title} variants={itemVariants}>
@@ -85,7 +68,7 @@ const Footer = () => {
           transition={{ delay: 0.5 }}
           viewport={{ once: true }}
         >
-          © 2024 Resume Optimizer. All rights reserved.
+          © 2025 Resume Optimizer. All rights reserved.
         </motion.div>
       </div>
     </footer>

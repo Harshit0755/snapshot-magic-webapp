@@ -26,7 +26,7 @@ const About = () => {
               
               <h2 className="text-2xl font-semibold mt-12 mb-4">Our Story</h2>
               <p className="text-muted-foreground mb-6">
-                Started in 2024, Resume Optimizer has helped thousands of job seekers land interviews at top companies. Our team combines expertise in AI, human resources, and career coaching to deliver the best possible resume optimization experience.
+                Started in 2025, Resume Optimizer has helped thousands of job seekers land interviews at top companies. Our team combines expertise in AI, human resources, and career coaching to deliver the best possible resume optimization experience.
               </p>
               
               <h2 className="text-2xl font-semibold mt-12 mb-4">Our Values</h2>

@@ -251,6 +251,7 @@ const UploadForm = () => {
                   id="jobDescription"
                   placeholder="Paste job description here..."
                   className="min-h-[200px] resize-none border-border focus:border-resume-purple focus:ring-resume-purple/20"
+                  style={{backgroundColor:"white"}}
                   value={jobDescription}
                   onChange={handleJobDescriptionChange}
                 />
