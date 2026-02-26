@@ -90,12 +90,6 @@ const Security = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7 }}
           >
-            <p className="text-muted-foreground">
-              Have security concerns? Contact our security team at{" "}
-              <a href="mailto:security@resumeoptimizer.io" className="text-primary hover:underline">
-                security@resumeoptimizer.io
-              </a>
-            </p>
           </motion.div>
         </div>
       </main>

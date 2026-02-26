@@ -210,7 +210,8 @@ const UploadForm = () => {
   
   return (
     <section className="py-16 px-6">
-      <div className="max-w-3xl mx-auto bg-background rounded-xl shadow-xl overflow-hidden">
+      <div className="max-w-3xl mx-auto bg-background rounded-xl shadow-xl overflow-hidden"
+      style={{backgroundColor:"white"}}>
         <div className="p-8">
           <motion.h2
             className="text-2xl font-bold mb-8"
