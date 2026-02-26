@@ -1,5 +1,6 @@
 
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import NavBar from '@/components/NavBar';
 import HeroSection from '@/components/HeroSection';
 import HowItWorks from '@/components/HowItWorks';
@@ -11,10 +12,20 @@ import { useIsMobile } from '@/hooks/use-mobile';
 const Index = () => {
   const controls = useAnimation();
   const isMobile = useIsMobile();
+  const location = useLocation();
   
   useEffect(() => {
     controls.start({ opacity: 1, y: 0 });
   }, [controls]);
+
+  useEffect(() => {
+    if (location.state?.scrollToUpload) {
+      setTimeout(() => {
+        document.getElementById('upload-section')?.scrollIntoView({ behavior: 'smooth' });
+      }, 700);
+      window.history.replaceState({}, document.title);
+    }
+  }, [location.state]);
 
   return (
     <motion.div
