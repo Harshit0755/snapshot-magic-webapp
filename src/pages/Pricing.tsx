@@ -26,10 +26,8 @@ const Pricing = () => {
       features: [
         "Unlimited resume optimizations",
         "Advanced ATS compatibility",
-        "Premium templates",
         "Job description matching",
-        "Priority support",
-        "Resume score tracking"
+        "Priority support"
       ],
       popular: true
     },
@@ -93,9 +91,9 @@ const Pricing = () => {
                     </li>
                   ))}
                 </ul>
-                <Button className="w-full" variant={plan.popular ? "default" : "outline"}>
+{/*                 <Button className="w-full" variant={plan.popular ? "default" : "outline"}>
                   Get Started
-                </Button>
+                </Button> */}
               </motion.div>
             ))}
           </div>
