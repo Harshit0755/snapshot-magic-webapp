@@ -33,7 +33,7 @@ const HowItWorks = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <Lottie animationData={animationData} loop />
+            <Lottie animationData={animationData} loop style={{width:'70%'}}/>
           </motion.div>
         </div>
         
