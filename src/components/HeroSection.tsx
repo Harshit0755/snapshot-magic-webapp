@@ -1,5 +1,7 @@
 
 import { motion } from "framer-motion";
+import Lottie from "lottie-react";
+import animationData from "./ui/AI.json";
 
 const HeroSection = () => {
   return (
@@ -15,13 +17,25 @@ const HeroSection = () => {
         </motion.h1>
         
         <motion.p 
-          className="text-lg text-gray-600 mb-12 max-w-2xl mx-auto"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          AI-powered resume tailoring for your dream job
-        </motion.p>
+  className="text-lg text-gray-600 mb-12 max-w-2xl mx-auto flex items-center justify-center gap-2"
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6, delay: 0.2 }}
+>
+  <span className="flex items-center gap-2">
+    
+    <Lottie 
+      animationData={animationData} 
+      loop 
+      style={{ width: 24, height: 24 }}
+    />
+
+    <span>
+      AI-powered resume tailoring for your dream job
+    </span>
+
+  </span>
+</motion.p>
         
         <motion.div 
           className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto"
