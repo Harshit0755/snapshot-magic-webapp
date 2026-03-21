@@ -40,7 +40,7 @@ const HelpCenter = () => {
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Help Center</h1>
             <p className="text-muted-foreground text-lg mb-8">
-              Find answers to your questions and learn how to get the most out of Resume Optimizer.
+              Find answers to your questions and learn how to get the most out of Resume Orbit.
             </p>
             <div className="relative max-w-md mx-auto">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />

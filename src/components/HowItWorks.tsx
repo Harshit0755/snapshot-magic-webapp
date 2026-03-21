@@ -1,5 +1,7 @@
 
 import { motion } from "framer-motion";
+import Lottie from "lottie-react";
+import animationData from "./ui/artificial intelligence.json";
 
 const HowItWorks = () => {
   const steps = [
@@ -25,13 +27,13 @@ const HowItWorks = () => {
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row">
         <div className="md:w-1/2 mb-8 md:mb-0 flex justify-center items-center">
           <motion.div 
-            className="bg-gray-100 rounded-lg w-full max-w-md aspect-[4/3] flex items-center justify-center text-gray-400"
+            className=" rounded-lg w-full max-w-md aspect-[4/3] flex items-center justify-center text-gray-400"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <span className="text-sm">Image</span>
+            <Lottie animationData={animationData} loop />
           </motion.div>
         </div>
         

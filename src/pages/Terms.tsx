@@ -19,14 +19,14 @@ const Terms = () => {
               <section>
                 <h2 className="text-2xl font-semibold mb-4">1. Acceptance of Terms</h2>
                 <p className="text-muted-foreground">
-                  By accessing or using Resume Optimizer, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing this service.
+                  By accessing or using Resume Orbit, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing this service.
                 </p>
               </section>
 
               <section>
                 <h2 className="text-2xl font-semibold mb-4">2. Use License</h2>
                 <p className="text-muted-foreground">
-                  Permission is granted to temporarily use Resume Optimizer for personal, non-commercial purposes. This is the grant of a license, not a transfer of title, and under this license you may not modify or copy our materials, use them for commercial purposes, or attempt to reverse engineer any software.
+                  Permission is granted to temporarily use Resume Orbit for personal, non-commercial purposes. This is the grant of a license, not a transfer of title, and under this license you may not modify or copy our materials, use them for commercial purposes, or attempt to reverse engineer any software.
                 </p>
               </section>
 
@@ -47,7 +47,7 @@ const Terms = () => {
               <section>
                 <h2 className="text-2xl font-semibold mb-4">5. Limitation of Liability</h2>
                 <p className="text-muted-foreground">
-                  Resume Optimizer shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use the service. Our total liability shall not exceed the amount you paid for the service in the past twelve months.
+                  Resume Orbit shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use the service. Our total liability shall not exceed the amount you paid for the service in the past twelve months.
                 </p>
               </section>
 

@@ -8,7 +8,7 @@ const Documentation = () => {
     {
       icon: Book,
       title: "Introduction",
-      description: "Learn the basics of Resume Optimizer and how to get started.",
+      description: "Learn the basics of Resume Orbit and how to get started.",
       items: ["Overview", "Quick Start Guide", "Key Concepts"]
     },
     {
@@ -20,7 +20,7 @@ const Documentation = () => {
     {
       icon: Code,
       title: "API Reference",
-      description: "For developers integrating Resume Optimizer into their applications.",
+      description: "For developers integrating Resume Orbit into their applications.",
       items: ["Authentication", "Endpoints", "Rate Limits", "Webhooks"]
     },
     {
@@ -43,7 +43,7 @@ const Documentation = () => {
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Documentation</h1>
             <p className="text-muted-foreground text-lg">
-              Everything you need to know about using Resume Optimizer effectively.
+              Everything you need to know about using Resume Orbit effectively.
             </p>
           </motion.div>
 

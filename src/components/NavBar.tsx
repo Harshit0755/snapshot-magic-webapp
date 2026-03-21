@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import logo from './ui/logo.png';
 
 const NavBar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -31,10 +32,11 @@ const NavBar = () => {
       scrolled ? "bg-white/90 backdrop-blur-lg shadow-sm" : "bg-transparent"
     )}>
       <Link to="/" className="flex items-center">
-        <div className="h-9 w-9 bg-gray-200 rounded mr-2 flex items-center justify-center text-xs font-medium text-gray-600">
+        {/* <div className="h-9 w-9 bg-gray-200 rounded mr-2 flex items-center justify-center text-xs font-medium text-gray-600">
           .io
-        </div>
-        <span className="font-medium text-lg">Resume Optimizer</span>
+        </div> */}
+        <img src={logo} style={{height:'40px', width: '40px'}}></img>
+        <span className="font-medium text-lg">Resume Orbit</span>
       </Link>
       
       <div className="hidden md:flex items-center space-x-8">

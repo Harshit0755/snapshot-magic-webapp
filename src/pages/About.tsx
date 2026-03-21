@@ -16,7 +16,7 @@ const About = () => {
             
             <div className="prose prose-lg max-w-none">
               <p className="text-muted-foreground text-lg mb-6">
-                Resume Optimizer was founded with a simple mission: to help job seekers present their best selves to potential employers. We believe that everyone deserves a fair chance at their dream job, and a well-crafted resume is the first step.
+                Resume Orbit was founded with a simple mission: to help job seekers present their best selves to potential employers. We believe that everyone deserves a fair chance at their dream job, and a well-crafted resume is the first step.
               </p>
               
               <h2 className="text-2xl font-semibold mt-12 mb-4">Our Mission</h2>
@@ -26,7 +26,7 @@ const About = () => {
               
               <h2 className="text-2xl font-semibold mt-12 mb-4">Our Story</h2>
               <p className="text-muted-foreground mb-6">
-                Started in 2025, Resume Optimizer has helped thousands of job seekers land interviews at top companies. Our team combines expertise in AI, human resources, and career coaching to deliver the best possible resume optimization experience.
+                Started in 2025, Resume Orbit has helped thousands of job seekers land interviews at top companies. Our team combines expertise in AI, human resources, and career coaching to deliver the best possible resume optimization experience.
               </p>
               
               <h2 className="text-2xl font-semibold mt-12 mb-4">Our Values</h2>

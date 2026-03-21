@@ -68,7 +68,7 @@ const Footer = () => {
           transition={{ delay: 0.5 }}
           viewport={{ once: true }}
         >
-          © 2025 Resume Optimizer. All rights reserved.
+          © 2025 Resume Orbit. All rights reserved.
         </motion.div>
       </div>
     </footer>
