@@ -68,7 +68,7 @@ const UploadForm = () => {
     setIsCheckingEmail(true);
 
     axios.get(
-      "http://localhost:8080/api/resume/status",
+      "https://snapshot-magic-backend-production.up.railway.app/api/resume/status",
       { params: { email } }
     ).then((res)=>{
       const mockResponse = {
@@ -97,7 +97,7 @@ const UploadForm = () => {
       // Show result based on user status
       if (res?.data?.freeChancesLeft >= 0 || res?.data?.pro) {
         axios
-          .post("http://localhost:8080/api/resume/generate", formData, {
+          .post("https://snapshot-magic-backend-production.up.railway.app/api/resume/generate", formData, {
             responseType: "blob", // IMPORTANT (PDF)
           })
           .then((resdata) => {
@@ -163,7 +163,7 @@ const UploadForm = () => {
   
     try {
       const orderRes = await axios.post(
-        "http://localhost:8080/api/payment/create-order",
+        "https://snapshot-magic-backend-production.up.railway.app/api/payment/create-order",
         null,
         { params: { email: userEmail } }
       );
@@ -178,7 +178,7 @@ const UploadForm = () => {
   
         handler: async function (response: any) {
           await axios.post(
-            "http://localhost:8080/api/payment/verify",
+            "https://snapshot-magic-backend-production.up.railway.app/api/payment/verify",
             {
               ...response,
               email: userEmail,
