@@ -191,7 +191,7 @@ const UploadForm = () => {
           //setRemainingDownloads(Infinity);
           console.log(userEmail);
           
-           axios.get("https://snapshot-magic-backend-production.up.railway.app/api/resume/status", { params: { userEmail } }).then((res)=>{
+           axios.get("https://snapshot-magic-backend-production.up.railway.app/api/resume/status", { params: { email: userEmail } }).then((res)=>{
             setRemainingDownloads(res.data.freeChancesLeft)
             setResultStatus("success");
            })
